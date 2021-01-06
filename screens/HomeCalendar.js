@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, TouchableOpacity, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
 import { Agenda } from 'react-native-calendars';
 import mockEventsWeek from '../mocks/mockEventsWeek';
 import EventItem from '../components/EventItem';
