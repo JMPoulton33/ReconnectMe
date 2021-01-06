@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Text, TouchableOpacity, View, StyleSheet } from 'react-native';
 import { Agenda } from 'react-native-calendars';
 import mockEventsWeek from '../mocks/mockEventsWeek';
+import EventItem from '../components/EventItem';
 
 const HomeCalendar = () => {
   const [items, setItems] = useState({});
@@ -13,19 +14,11 @@ const HomeCalendar = () => {
 
   const renderItem = (item) => {
     return (
-      <TouchableOpacity style={styles.item}>
-        <View>
-          <Text style={styles.eventItemText}>{item.name}</Text>
-          <View style={styles.timeLocationContainer}>
-            <Text>{item.time}</Text>
-            {item.location ? (
-              <Text>{item.location}</Text>
-            ) : (
-              <Text>No location provided</Text>
-            )}
-          </View>
-        </View>
-      </TouchableOpacity>
+      <EventItem
+        eventTitle={item.name}
+        eventTime={item.time}
+        eventLocation={item.location}
+      />
     );
   };
 
@@ -58,7 +51,7 @@ const HomeCalendar = () => {
           backgroundColor: '#ffffff',
           // textSectionTitleColor: '#b6c1cd',
           // textSectionTitleDisabledColor: '#d9e1e8',
-          // selectedDayBackgroundColor: '#00adf5',
+          selectedDayBackgroundColor: '#6BC7C7',
           // selectedDayTextColor: '#ffffff',
           // todayTextColor: '#00adf5',
           // dayTextColor: '#2d4150',
@@ -87,7 +80,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   item: {
-    backgroundColor: 'white',
+    backgroundColor: '#97D8D8',
     borderColor: 'grey',
     borderWidth: 2,
     borderRadius: 5,
@@ -97,7 +90,7 @@ const styles = StyleSheet.create({
     minHeight: 57.5,
   },
   eventItemText: {
-    color: 'red',
+    color: 'black',
     fontSize: 20,
   },
   emptyDate: {
@@ -114,6 +107,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    padding: 5,
   },
 });
 
