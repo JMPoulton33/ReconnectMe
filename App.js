@@ -1,14 +1,17 @@
 import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
 import { StyleSheet, SafeAreaView } from 'react-native';
 import HomeCalendar from './screens/HomeCalendar';
 
-export default function App() {
+const App = () => {
   return (
-    <SafeAreaView style={styles.container}>
-      <HomeCalendar />
-    </SafeAreaView>
+    <NavigationContainer>
+      <SafeAreaView style={styles.container}>
+        <HomeCalendar />
+      </SafeAreaView>
+    </NavigationContainer>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -16,3 +19,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
 });
+
+export default App;
