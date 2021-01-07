@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { View, SafeAreaView, StyleSheet } from 'react-native';
+import { View, Text, SafeAreaView, StyleSheet, Button } from 'react-native';
 import { Agenda } from 'react-native-calendars';
 import mockEventsWeek from '../mocks/mockEventsWeek';
 import EventItem from '../components/EventItem';
 import EmptyDate from '../components/EmptyDate';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const HomeCalendar = () => {
+const HomeCalendar = ({ navigation }) => {
   const [items, setItems] = useState({});
-  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const loadItems = async () => {
     await setItems(mockEventsWeek);
-    console.log(items);
   };
 
   const renderItem = (item) => {
@@ -20,12 +19,30 @@ const HomeCalendar = () => {
         eventTitle={item.name}
         eventTime={item.time}
         eventLocation={item.location}
+        handleNavigation={handleNavigation}
       />
     );
   };
 
   const renderEmptyDate = () => {
-    return <EmptyDate />;
+    return <EmptyDate handleNavigation={handleNavigation} />;
+  };
+
+  const handleNavigation = (targetScreen) => {
+    navigation.navigate(targetScreen);
+  };
+
+  const addEventToDate = (dateKey) => {
+    setItems((prevState) => ({
+      ...prevState,
+      [dateKey]: [
+        {
+          name: 'Visit from Beth',
+          time: '5.30 PM',
+        },
+      ],
+    }));
+    console.log(items);
   };
 
   useEffect(() => {
@@ -33,7 +50,10 @@ const HomeCalendar = () => {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
+      <TouchableOpacity onPress={() => addEventToDate('2020-01-06')}>
+        <Text>CLICK ME</Text>
+      </TouchableOpacity>
       <Agenda
         items={items}
         selected={'2020-01-01'}
@@ -68,7 +88,7 @@ const HomeCalendar = () => {
           // textDayHeaderFontSize: 16,
         }}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 

@@ -2,13 +2,18 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { StyleSheet, SafeAreaView } from 'react-native';
 import HomeCalendar from './screens/HomeCalendar';
+import EventCreator from './screens/EventCreator';
+import { createStackNavigator } from '@react-navigation/stack';
+
+const Stack = createStackNavigator();
 
 const App = () => {
   return (
     <NavigationContainer>
-      <SafeAreaView style={styles.container}>
-        <HomeCalendar />
-      </SafeAreaView>
+      <Stack.Navigator>
+        <Stack.Screen name="Home Calendar" component={HomeCalendar} />
+        <Stack.Screen name="Event Creator" component={EventCreator} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };

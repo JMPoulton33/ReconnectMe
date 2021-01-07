@@ -7,7 +7,12 @@ import {
   ActionSheetIOS,
 } from 'react-native';
 
-const EventItem = ({ eventTitle, eventLocation, eventTime }) => {
+const EventItem = ({
+  eventTitle,
+  eventLocation,
+  eventTime,
+  handleNavigation,
+}) => {
   const handleEventPress = () => {
     ActionSheetIOS.showActionSheetWithOptions(
       {
@@ -24,7 +29,7 @@ const EventItem = ({ eventTitle, eventLocation, eventTime }) => {
           console.log('Edit Event');
         }
         if (buttonIndex === 1) {
-          console.log('Create New Event');
+          handleNavigation('New Event');
         }
         if (buttonIndex === 2) {
           console.log('See Event Details');
