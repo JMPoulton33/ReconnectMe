@@ -1,22 +1,47 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  ActionSheetIOS,
+} from 'react-native';
 
-const EventItem = (props) => {
+const EventItem = ({ eventTitle, eventLocation, eventTime }) => {
   const handleEventPress = () => {
-    console.log('event pressed');
+    ActionSheetIOS.showActionSheetWithOptions(
+      {
+        options: [
+          'Edit Event',
+          'Create New Event on this Day',
+          'See Event Details',
+          'Cancel',
+        ],
+        cancelButtonIndex: 3,
+      },
+      (buttonIndex) => {
+        if (buttonIndex === 0) {
+          console.log('Edit Event');
+        }
+        if (buttonIndex === 1) {
+          console.log('Create New Event');
+        }
+        if (buttonIndex === 2) {
+          console.log('See Event Details');
+        }
+        if (buttonIndex === 3) {
+        }
+      },
+    );
   };
 
   return (
     <TouchableOpacity style={styles.item} onPress={handleEventPress}>
       <View>
-        <Text style={styles.eventItemText}>{props.eventTitle}</Text>
+        <Text style={styles.eventItemText}>{eventTitle}</Text>
         <View style={styles.timeLocationContainer}>
-          <Text>{props.eventTime}</Text>
-          {props.eventLocation ? (
-            <Text>{props.eventLocation}</Text>
-          ) : (
-            <Text>No location provided</Text>
-          )}
+          {eventTime ? <Text>{eventTime}</Text> : <Text />}
+          {eventLocation ? <Text>{eventLocation}</Text> : <Text />}
         </View>
       </View>
     </TouchableOpacity>
@@ -37,6 +62,12 @@ const styles = StyleSheet.create({
   eventItemText: {
     color: 'black',
     fontSize: 20,
+  },
+  timeLocationContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: 5,
   },
 });
 

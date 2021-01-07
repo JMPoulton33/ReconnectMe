@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { Agenda } from 'react-native-calendars';
 import mockEventsWeek from '../mocks/mockEventsWeek';
 import EventItem from '../components/EventItem';
+import EmptyDate from '../components/EmptyDate';
 
 const HomeCalendar = () => {
   const [items, setItems] = useState({});
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const loadItems = () => {
-    setItems(mockEventsWeek);
+  const loadItems = async () => {
+    await setItems(mockEventsWeek);
     console.log(items);
   };
 
@@ -23,11 +25,7 @@ const HomeCalendar = () => {
   };
 
   const renderEmptyDate = () => {
-    return (
-      <View style={styles.emptyDate}>
-        <Text>This is empty date!</Text>
-      </View>
-    );
+    return <EmptyDate />;
   };
 
   useEffect(() => {
@@ -79,20 +77,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
   },
-  item: {
-    backgroundColor: '#97D8D8',
-    borderColor: 'grey',
-    borderWidth: 2,
-    borderRadius: 5,
-    padding: 10,
-    marginRight: 10,
-    marginTop: 17,
-    minHeight: 57.5,
-  },
-  eventItemText: {
-    color: 'black',
-    fontSize: 20,
-  },
   emptyDate: {
     backgroundColor: 'white',
     borderColor: 'grey',
@@ -102,12 +86,6 @@ const styles = StyleSheet.create({
     marginRight: 10,
     marginTop: 17,
     minHeight: 57.5,
-  },
-  timeLocationContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    padding: 5,
   },
 });
 
