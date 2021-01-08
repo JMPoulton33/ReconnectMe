@@ -12,6 +12,7 @@ const EventItem = ({
   eventLocation,
   eventTime,
   handleNavigation,
+  addEventToDate,
 }) => {
   const handleEventPress = () => {
     ActionSheetIOS.showActionSheetWithOptions(
@@ -29,7 +30,9 @@ const EventItem = ({
           console.log('Edit Event');
         }
         if (buttonIndex === 1) {
-          handleNavigation('New Event');
+          handleNavigation('New Event', {
+            addEventToDate: addEventToDate,
+          });
         }
         if (buttonIndex === 2) {
           console.log('See Event Details');

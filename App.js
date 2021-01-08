@@ -10,9 +10,13 @@ const Stack = createStackNavigator();
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home Calendar" component={HomeCalendar} />
-        <Stack.Screen name="Event Creator" component={EventCreator} />
+      <Stack.Navigator mode="modal">
+        <Stack.Screen
+          name="Calendar"
+          component={HomeCalendar}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen name="New Event" component={EventCreator} />
       </Stack.Navigator>
     </NavigationContainer>
   );

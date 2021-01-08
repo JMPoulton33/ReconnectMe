@@ -29,21 +29,20 @@ const HomeCalendar = ({ navigation }) => {
     return <EmptyDate handleNavigation={handleNavigation} />;
   };
 
-  const handleNavigation = (targetScreen) => {
-    navigation.navigate(targetScreen);
+  const handleNavigation = (targetScreen, params) => {
+    console.log('params :', params);
+    navigation.navigate(targetScreen, params);
   };
 
-  const addEventToDate = (dateKey) => {
-    setItems((prevState) => ({
-      ...prevState,
-      [dateKey]: [
-        {
-          name: 'Visit from Beth',
-          time: '5.30 PM',
-        },
-      ],
-    }));
-    console.log(items);
+  const addEventToDate = (dateKey, newEvent) => {
+    setItems((prevState) =>
+      prevState[dateKey]
+        ? {
+            ...prevState,
+            [dateKey]: [...prevState[dateKey], newEvent],
+          }
+        : { ...prevState, [dateKey]: [newEvent] },
+    );
   };
 
   useEffect(() => {
@@ -52,9 +51,6 @@ const HomeCalendar = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <TouchableOpacity onPress={() => addEventToDate('2020-01-06')}>
-        <Text>CLICK ME</Text>
-      </TouchableOpacity>
       <Agenda
         items={items}
         selected={'2020-01-01'}

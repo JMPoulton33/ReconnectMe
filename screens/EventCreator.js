@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Button } from 'react-native';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-const EventCreator = () => {
+const EventCreator = ({ route, navigation }) => {
   const [eventName, setEventName] = useState('');
   const [location, setLocation] = useState('');
   const [date, setDate] = useState(new Date());
@@ -19,7 +19,7 @@ const EventCreator = () => {
     setTime(currentTime);
   };
 
-  const formatDate = (date) => {
+  const formatDate = () => {
     const year = date.getFullYear();
     let month = date.getMonth() + 1;
     let dt = date.getDate();
@@ -31,27 +31,48 @@ const EventCreator = () => {
       month = '0' + month;
     }
 
-    console.log(year + '-' + month + '-' + dt);
+    return year + '-' + month + '-' + dt;
+  };
+
+  const formatTime = () => {
+    return time.toLocaleTimeString(navigator.language, {
+      hour: 'numeric',
+      minute: '2-digit',
+    });
   };
 
   const handleEventSubmit = () => {
+    const { addEventToDate } = route.params;
     const newEvent = {
       name: eventName,
-      time: time,
+      time: formatTime(),
       location: location,
     };
-    const dateKey = formatDate(date);
+    const dateKey = formatDate();
+    addEventToDate(dateKey, newEvent);
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.inputDescriptionText}>Event Name: </Text>
-      <TextInput
-        style={styles.input}
-        value={eventName}
-        onChangeText={setEventName}
-        placeholder="just an input"
-      />
+      <View style={styles.inputContainer}>
+        <Text style={styles.inputDescriptionText}>Event Name: </Text>
+        <TextInput
+          style={styles.input}
+          value={eventName}
+          onChangeText={setEventName}
+          placeholder="Enter the Name of your New Event Here"
+        />
+      </View>
+      <View style={styles.inputContainer}>
+        <Text style={styles.inputDescriptionText}>Location: </Text>
+        <TextInput
+          style={styles.input}
+          value={location}
+          onChangeText={setLocation}
+          placeholder="Enter the Location of your New Event Here"
+        />
+      </View>
+
       <DateTimePicker
         style={styles.picker}
         display="spinner"
@@ -59,6 +80,7 @@ const EventCreator = () => {
         mode="date"
         onChange={handleDateChange}
       />
+
       <DateTimePicker
         style={styles.picker}
         display="spinner"
@@ -66,15 +88,10 @@ const EventCreator = () => {
         mode="time"
         onChange={handleTimeChange}
       />
-
-      <Text style={styles.inputDescriptionText}>Location: </Text>
-      <TextInput
-        style={styles.input}
-        value={location}
-        onChangeText={setLocation}
-        placeholder="just an input"
-      />
-      <TouchableOpacity onPress={() => handleEventSubmit()}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => handleEventSubmit()}
+      >
         <Text>Click to Create</Text>
       </TouchableOpacity>
     </View>
@@ -87,7 +104,7 @@ const styles = StyleSheet.create({
     borderColor: 'grey',
     borderRadius: 10,
     padding: 10,
-    marginBottom: 20,
+    marginBottom: 5,
   },
   inputDescriptionText: {
     color: 'black',
@@ -99,10 +116,19 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     alignItems: 'stretch',
+    backgroundColor: 'white',
   },
   picker: {
-    marginBottom: 20,
+    marginBottom: 0,
   },
+  button: {
+    height: 40,
+    backgroundColor: '#97d8d8',
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  inputContainer: {},
 });
 
 export default EventCreator;
