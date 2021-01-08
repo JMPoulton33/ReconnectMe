@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { TextInput } from 'react-native-gesture-handler';
+import { View, Text, StyleSheet, Button } from 'react-native';
+import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 const EventCreator = () => {
@@ -17,6 +17,30 @@ const EventCreator = () => {
   const handleTimeChange = (event, selectedTime) => {
     const currentTime = selectedTime || date;
     setTime(currentTime);
+  };
+
+  const formatDate = (date) => {
+    const year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let dt = date.getDate();
+
+    if (dt < 10) {
+      dt = '0' + dt;
+    }
+    if (month < 10) {
+      month = '0' + month;
+    }
+
+    console.log(year + '-' + month + '-' + dt);
+  };
+
+  const handleEventSubmit = () => {
+    const newEvent = {
+      name: eventName,
+      time: time,
+      location: location,
+    };
+    const dateKey = formatDate(date);
   };
 
   return (
@@ -50,6 +74,9 @@ const EventCreator = () => {
         onChangeText={setLocation}
         placeholder="just an input"
       />
+      <TouchableOpacity onPress={() => handleEventSubmit()}>
+        <Text>Click to Create</Text>
+      </TouchableOpacity>
     </View>
   );
 };

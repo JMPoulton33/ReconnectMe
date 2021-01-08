@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, SafeAreaView, StyleSheet, Button } from 'react-native';
+import { View, Text, SafeAreaView, StyleSheet } from 'react-native';
 import { Agenda } from 'react-native-calendars';
 import mockEventsWeek from '../mocks/mockEventsWeek';
 import EventItem from '../components/EventItem';
@@ -20,6 +20,7 @@ const HomeCalendar = ({ navigation }) => {
         eventTime={item.time}
         eventLocation={item.location}
         handleNavigation={handleNavigation}
+        addEventToDate={addEventToDate}
       />
     );
   };
