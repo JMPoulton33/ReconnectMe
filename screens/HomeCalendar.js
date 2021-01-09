@@ -26,7 +26,12 @@ const HomeCalendar = ({ navigation }) => {
   };
 
   const renderEmptyDate = () => {
-    return <EmptyDate handleNavigation={handleNavigation} />;
+    return (
+      <EmptyDate
+        handleNavigation={handleNavigation}
+        addEventToDate={addEventToDate}
+      />
+    );
   };
 
   const handleNavigation = (targetScreen, params) => {

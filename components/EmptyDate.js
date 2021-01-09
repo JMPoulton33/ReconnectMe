@@ -7,7 +7,7 @@ import {
   ActionSheetIOS,
 } from 'react-native';
 
-const EmptyDate = ({ handleNavigation }) => {
+const EmptyDate = ({ handleNavigation, addEventToDate }) => {
   const handleEmptyDatePress = () => {
     ActionSheetIOS.showActionSheetWithOptions(
       {
@@ -16,7 +16,9 @@ const EmptyDate = ({ handleNavigation }) => {
       },
       (buttonIndex) => {
         if (buttonIndex === 0) {
-          handleNavigation('Event Creator');
+          handleNavigation('New Event', {
+            addEventToDate: addEventToDate,
+          });
         }
         if (buttonIndex === 1) {
         }

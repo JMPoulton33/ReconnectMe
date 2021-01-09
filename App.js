@@ -3,22 +3,34 @@ import { NavigationContainer } from '@react-navigation/native';
 import { StyleSheet, SafeAreaView } from 'react-native';
 import HomeCalendar from './screens/HomeCalendar';
 import EventCreator from './screens/EventCreator';
+import ActivityBar from './screens/ActivityBar';
 import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator mode="modal">
-        <Stack.Screen
-          name="Calendar"
-          component={HomeCalendar}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen name="New Event" component={EventCreator} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <>
+      <NavigationContainer>
+        <Stack.Navigator mode="modal">
+          <Stack.Screen
+            name="Calendar"
+            component={HomeCalendar}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen name="New Event" component={EventCreator} />
+        </Stack.Navigator>
+      </NavigationContainer>
+
+      <NavigationContainer>
+        <Tab.Navigator>
+          <Tab.Screen name="Calendar" component={HomeCalendar} />
+          <Tab.Screen name="My Activity" component={ActivityBar} />
+        </Tab.Navigator>
+      </NavigationContainer>
+    </>
   );
 };
 
