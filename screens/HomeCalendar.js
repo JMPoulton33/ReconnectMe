@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, SafeAreaView, StyleSheet } from 'react-native';
+import { SafeAreaView, StyleSheet } from 'react-native';
 import { Agenda } from 'react-native-calendars';
 import mockEventsWeek from '../mocks/mockEventsWeek';
 import EventItem from '../components/EventItem';
 import EmptyDate from '../components/EmptyDate';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const HomeCalendar = ({ navigation }) => {
   const [items, setItems] = useState({});
