@@ -44,4 +44,25 @@ const countEventsInWeek = (items) => {
   return eventCount;
 };
 
-export default countEventsInWeek;
+const calculateActivityPercentage = (items, target) => {
+  const currentEventCount = countEventsInWeek(items);
+  if (currentEventCount >= target) return 100;
+  else {
+    return Math.ceil((currentEventCount / target) * 100);
+  }
+};
+
+const calculateProgressFillerWidth = (
+  percentageComplete,
+  minWidth,
+  maxWidth,
+) => {
+  const calculatedWidth = maxWidth * (percentageComplete / 100);
+  return Math.max(minWidth, calculatedWidth);
+};
+
+export {
+  calculateActivityPercentage,
+  countEventsInWeek,
+  calculateProgressFillerWidth,
+};
