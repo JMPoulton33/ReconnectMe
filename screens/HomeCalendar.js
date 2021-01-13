@@ -1,17 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import { Agenda } from 'react-native-calendars';
-import mockEventsWeek from '../mocks/mockEventsWeek';
 import EventItem from '../components/EventItem';
 import EmptyDate from '../components/EmptyDate';
 
-const HomeCalendar = ({ navigation }) => {
-  const [items, setItems] = useState({});
-
-  const loadItems = async () => {
-    await setItems(mockEventsWeek);
-  };
-
+const HomeCalendar = ({ navigation, items, addEventToDate }) => {
   const renderItem = (item) => {
     return (
       <EventItem
@@ -38,26 +31,11 @@ const HomeCalendar = ({ navigation }) => {
     navigation.navigate(targetScreen, params);
   };
 
-  const addEventToDate = (dateKey, newEvent) => {
-    setItems((prevState) =>
-      prevState[dateKey]
-        ? {
-            ...prevState,
-            [dateKey]: [...prevState[dateKey], newEvent],
-          }
-        : { ...prevState, [dateKey]: [newEvent] },
-    );
-  };
-
-  useEffect(() => {
-    loadItems();
-  }, []);
-
   return (
     <SafeAreaView style={styles.container}>
       <Agenda
         items={items}
-        selected={'2020-01-01'}
+        selected={'2021-01-01'}
         renderItem={renderItem}
         renderEmptyDate={renderEmptyDate}
         theme={{

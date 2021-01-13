@@ -6,25 +6,37 @@ import ActivityScreen from '../screens/ActivityScreen';
 
 const Stack = createStackNavigator();
 
-const MainStackNavigator = ({ test }) => {
+const MainStackNavigator = ({ items, addEventToDate }) => {
   return (
     <Stack.Navigator mode="modal">
-      <Stack.Screen
-        name="Calendar"
-        component={HomeCalendar}
-        options={{ headerShown: false }}
-      />
+      <Stack.Screen name="Calendar" options={{ headerShown: false }}>
+        {(props) => (
+          <HomeCalendar
+            items={items}
+            addEventToDate={addEventToDate}
+            {...props}
+          />
+        )}
+      </Stack.Screen>
       <Stack.Screen name="New Event">
-        {(props) => <EventCreator test={test} {...props} />}
+        {(props) => <EventCreator {...props} />}
       </Stack.Screen>
     </Stack.Navigator>
   );
 };
 
-const ActivityScreenStackNavigator = () => {
+const ActivityScreenStackNavigator = ({ items, addEventToDate }) => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Activity" component={ActivityScreen} />
+      <Stack.Screen name="Activity" options={{ headerShown: false }}>
+        {(props) => (
+          <ActivityScreen
+            items={items}
+            addEventToDate={addEventToDate}
+            {...props}
+          />
+        )}
+      </Stack.Screen>
     </Stack.Navigator>
   );
 };
