@@ -3,11 +3,12 @@ import { View, Text, StyleSheet, Button } from 'react-native';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-const EventCreator = ({ route, navigation }) => {
+const EventCreator = ({ route, navigation, test }) => {
   const [eventName, setEventName] = useState('');
   const [location, setLocation] = useState('');
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState(new Date());
+  console.log('label', test);
 
   const handleDateChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;

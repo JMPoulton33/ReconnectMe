@@ -6,7 +6,7 @@ import ActivityScreen from '../screens/ActivityScreen';
 
 const Stack = createStackNavigator();
 
-const MainStackNavigator = () => {
+const MainStackNavigator = ({ test }) => {
   return (
     <Stack.Navigator mode="modal">
       <Stack.Screen
@@ -14,7 +14,9 @@ const MainStackNavigator = () => {
         component={HomeCalendar}
         options={{ headerShown: false }}
       />
-      <Stack.Screen name="New Event" component={EventCreator} />
+      <Stack.Screen name="New Event">
+        {(props) => <EventCreator test={test} {...props} />}
+      </Stack.Screen>
     </Stack.Navigator>
   );
 };
