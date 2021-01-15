@@ -4,6 +4,7 @@ const mockEventsWeek = {
       name: 'Visit from Andy',
       time: '3 PM',
       location: '6 Holborn Street',
+      date: '2021-01-01',
     },
   ],
   '2021-01-02': [

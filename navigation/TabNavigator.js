@@ -4,7 +4,6 @@ import {
   MainStackNavigator,
   ActivityScreenStackNavigator,
 } from './StackNavigator';
-import mockEventsWeek from '../mocks/mockEventsWeek';
 
 const Tab = createBottomTabNavigator();
 
@@ -12,7 +11,15 @@ const BottomTabNavigator = () => {
   const [items, setItems] = useState({});
 
   const loadItems = async () => {
-    await setItems(mockEventsWeek);
+    try {
+      const userId = '6001759c5dc184084a16b971';
+      const response = await fetch(`http://localhost:3000/api/users/${userId}`);
+      const user = await response.json();
+      const userEvents = user.events;
+      setItems(userEvents);
+    } catch (err) {
+      console.log('fetch failed', err);
+    }
   };
 
   const addEventToDate = (dateKey, newEvent) => {
