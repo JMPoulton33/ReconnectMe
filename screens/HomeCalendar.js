@@ -4,15 +4,25 @@ import { Agenda } from 'react-native-calendars';
 import EventItem from '../components/EventItem';
 import EmptyDate from '../components/EmptyDate';
 
-const HomeCalendar = ({ navigation, items, addEventToDate }) => {
+const HomeCalendar = ({
+  navigation,
+  items,
+  addEventToDate,
+  toggleIsRequest,
+}) => {
   const renderItem = (item) => {
+    console.log(item);
     return (
       <EventItem
         eventTitle={item.name}
         eventTime={item.time}
+        eventDate={item.date}
+        eventId={item._id}
         eventLocation={item.location}
+        eventIsRequest={item.isRequest}
         handleNavigation={handleNavigation}
         addEventToDate={addEventToDate}
+        toggleIsRequest={toggleIsRequest}
       />
     );
   };
@@ -27,7 +37,6 @@ const HomeCalendar = ({ navigation, items, addEventToDate }) => {
   };
 
   const handleNavigation = (targetScreen, params) => {
-    console.log('params :', params);
     navigation.navigate(targetScreen, params);
   };
 

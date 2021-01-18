@@ -6,7 +6,7 @@ import ActivityScreen from '../screens/ActivityScreen';
 
 const Stack = createStackNavigator();
 
-const MainStackNavigator = ({ items, addEventToDate }) => {
+const MainStackNavigator = ({ items, addEventToDate, toggleIsRequest }) => {
   return (
     <Stack.Navigator mode="modal">
       <Stack.Screen name="Calendar" options={{ headerShown: false }}>
@@ -14,6 +14,7 @@ const MainStackNavigator = ({ items, addEventToDate }) => {
           <HomeCalendar
             items={items}
             addEventToDate={addEventToDate}
+            toggleIsRequest={toggleIsRequest}
             {...props}
           />
         )}

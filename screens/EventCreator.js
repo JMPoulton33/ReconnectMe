@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { formatDate, formatTime } from '../utils/ActivityFunctions';
 
 const EventCreator = ({ route, navigation, test }) => {
   const [eventName, setEventName] = useState('');
   const [location, setLocation] = useState('');
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState(new Date());
-  console.log('label', test);
 
   const handleDateChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -20,37 +20,17 @@ const EventCreator = ({ route, navigation, test }) => {
     setTime(currentTime);
   };
 
-  const formatDate = () => {
-    const year = date.getFullYear();
-    let month = date.getMonth() + 1;
-    let dt = date.getDate();
-
-    if (dt < 10) {
-      dt = '0' + dt;
-    }
-    if (month < 10) {
-      month = '0' + month;
-    }
-
-    return year + '-' + month + '-' + dt;
-  };
-
-  const formatTime = () => {
-    return time.toLocaleTimeString(navigator.language, {
-      hour: 'numeric',
-      minute: '2-digit',
-    });
-  };
-
   const handleEventSubmit = () => {
     const { addEventToDate } = route.params;
     const newEvent = {
       name: eventName,
-      time: formatTime(),
+      time: formatTime(time),
       location: location,
+      date: formatDate(date),
     };
-    const dateKey = formatDate();
+    const dateKey = formatDate(date);
     addEventToDate(dateKey, newEvent);
+    navigation.goBack();
   };
 
   return (

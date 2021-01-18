@@ -13,6 +13,13 @@ const formatDate = (date) => {
   return year + '-' + month + '-' + dt;
 };
 
+const formatTime = (time) => {
+  return time.toLocaleTimeString(navigator.language, {
+    hour: 'numeric',
+    minute: '2-digit',
+  });
+};
+
 const getRangeOfDatesInWeek = () => {
   const currentDate = new Date();
   const startDate = new Date(currentDate);
@@ -65,4 +72,6 @@ export {
   calculateActivityPercentage,
   countEventsInWeek,
   calculateProgressFillerWidth,
+  formatDate,
+  formatTime,
 };

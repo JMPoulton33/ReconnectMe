@@ -7,12 +7,18 @@ import {
   ActionSheetIOS,
 } from 'react-native';
 
+import AcceptRejectBox from './AcceptRejectBox';
+
 const EventItem = ({
   eventTitle,
-  eventLocation,
   eventTime,
+  eventDate,
+  eventLocation,
+  eventIsRequest,
+  eventId,
   handleNavigation,
   addEventToDate,
+  toggleIsRequest,
 }) => {
   const handleEventPress = () => {
     ActionSheetIOS.showActionSheetWithOptions(
@@ -44,22 +50,64 @@ const EventItem = ({
   };
 
   return (
-    <TouchableOpacity style={styles.item} onPress={handleEventPress}>
+    <View>
       <View>
-        <Text style={styles.eventItemText}>{eventTitle}</Text>
-        <View style={styles.timeLocationContainer}>
-          {eventTime ? <Text>{eventTime}</Text> : <Text />}
-          {eventLocation ? <Text>{eventLocation}</Text> : <Text />}
-        </View>
+        {eventIsRequest ? (
+          <View style={styles.requestFromContainer}>
+            <Text style={styles.requestFromText}>
+              Request From: Tina Briggs
+            </Text>
+          </View>
+        ) : (
+          <View />
+        )}
       </View>
-    </TouchableOpacity>
+      <TouchableOpacity
+        style={[
+          styles.item,
+          eventIsRequest ? styles.itemTopCorners : styles.item,
+        ]}
+        onPress={handleEventPress}
+      >
+        <View>
+          <Text style={styles.eventItemText}>{eventTitle}</Text>
+          <View style={styles.timeLocationContainer}>
+            {eventTime ? (
+              <View>
+                <Text style={styles.eventBodyText}>{eventTime}</Text>
+              </View>
+            ) : (
+              <Text />
+            )}
+            {eventLocation ? (
+              <View>
+                <Text style={styles.eventBodyText}>{eventLocation}</Text>
+              </View>
+            ) : (
+              <Text />
+            )}
+          </View>
+          <View>
+            {eventIsRequest ? (
+              <AcceptRejectBox
+                toggleIsRequest={toggleIsRequest}
+                eventId={eventId}
+                eventDate={eventDate}
+              />
+            ) : (
+              <View />
+            )}
+          </View>
+        </View>
+      </TouchableOpacity>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   item: {
     backgroundColor: '#97D8D8',
-    borderColor: 'grey',
+    borderColor: 'black',
     borderWidth: 2,
     borderRadius: 5,
     padding: 10,
@@ -69,13 +117,35 @@ const styles = StyleSheet.create({
   },
   eventItemText: {
     color: 'black',
-    fontSize: 20,
+    fontSize: 24,
+    marginHorizontal: 10,
   },
   timeLocationContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: 5,
+    padding: 10,
+  },
+  eventBodyText: {
+    fontSize: 20,
+  },
+  requestFromContainer: {
+    borderColor: 'black',
+    borderWidth: 1,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    marginBottom: -17,
+    marginTop: 17,
+    padding: 10,
+    marginRight: 10,
+    backgroundColor: '#fd7e14',
+  },
+  requestFromText: {
+    fontSize: 20,
+  },
+  itemTopCorners: {
+    borderTopLeftRadius: 0,
+    borderTopRightRadius: 0,
   },
 });
 
