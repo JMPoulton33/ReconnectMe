@@ -40,7 +40,7 @@ const EventCreator = ({ route, navigation, test }) => {
     setTimeout(() => {
       setIsLoading(false);
       navigation.goBack();
-    }, 1500);
+    }, 500);
   };
 
   return (

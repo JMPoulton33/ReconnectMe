@@ -1,20 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
-const AcceptRejectBox = ({ toggleIsRequest, eventId, eventDate }) => {
-  const handleAcceptPress = () => {
-    toggleIsRequest(eventDate, eventId);
+const AddToCalendarButton = ({ confirmSuggestedEvent }) => {
+  const handleButtonPress = () => {
+    confirmSuggestedEvent();
   };
   return (
     <View style={styles.container}>
       <TouchableOpacity
-        onPress={handleAcceptPress}
+        onPress={() => handleButtonPress()}
         style={[styles.buttonContainer, styles.accept]}
       >
-        <Text style={styles.buttonText}>Accept</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={[styles.buttonContainer, styles.reject]}>
-        <Text style={styles.buttonText}>Reject</Text>
+        <Text style={styles.buttonText}>Add To My Calendar</Text>
       </TouchableOpacity>
     </View>
   );
@@ -45,4 +42,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AcceptRejectBox;
+export default AddToCalendarButton;

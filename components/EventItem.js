@@ -55,7 +55,7 @@ const EventItem = ({
         {eventIsRequest ? (
           <View style={styles.requestFromContainer}>
             <Text style={styles.requestFromText}>
-              Request From: Tina Briggs
+              Request From: Andre Lellis
             </Text>
           </View>
         ) : (
@@ -141,14 +141,14 @@ const styles = StyleSheet.create({
   },
   requestFromContainer: {
     borderColor: 'black',
-    borderWidth: 1,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
+    borderWidth: 0,
+    borderTopLeftRadius: 5,
+    borderTopRightRadius: 5,
     marginBottom: -17,
     marginTop: 17,
     padding: 10,
     marginRight: 10,
-    backgroundColor: '#fd7e14',
+    backgroundColor: '#fec79a',
   },
   requestFromText: {
     fontSize: 20,

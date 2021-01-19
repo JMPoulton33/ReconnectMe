@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   filler: {
     backgroundColor: '#23395B',
     borderRadius: 30,
-    height: 44,
+    height: 48,
     width: 150,
     justifyContent: 'center',
     alignItems: 'center',

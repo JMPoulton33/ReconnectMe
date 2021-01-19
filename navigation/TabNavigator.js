@@ -268,6 +268,7 @@ const BottomTabNavigator = () => {
         labelStyle: {
           fontSize: 15,
         },
+        animationEnabled: true,
       }}
     >
       <Tab.Screen name="Home">
