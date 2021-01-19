@@ -51,7 +51,8 @@ const styles = StyleSheet.create({
   bodyText: {
     fontWeight: '600',
     fontSize: 20,
-    paddingBottom: 20,
+    paddingBottom: 10,
+    paddingTop: 5,
   },
   locationText: {
     alignSelf: 'flex-start',

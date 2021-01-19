@@ -43,7 +43,7 @@ const HomeCalendar = ({
     <SafeAreaView style={styles.container}>
       <Agenda
         items={items}
-        selected={'2021-01-01'}
+        selected={'2021-01-18'}
         renderItem={renderItem}
         renderEmptyDate={renderEmptyDate}
         theme={{
@@ -72,7 +72,7 @@ const HomeCalendar = ({
           // textDayHeaderFontWeight: '300',
           // textDayFontSize: 16,
           // textMonthFontSize: 16,
-          // textDayHeaderFontSize: 16,
+          textDayHeaderFontSize: 0,
         }}
       />
     </SafeAreaView>

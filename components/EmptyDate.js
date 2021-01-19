@@ -32,7 +32,7 @@ const EmptyDate = ({ handleNavigation, addEventToDate }) => {
       onPress={handleEmptyDatePress}
     >
       <View>
-        <Text>This is empty date!</Text>
+        <Text style={styles.text}>No Events Scheduled for this Date</Text>
       </View>
     </TouchableOpacity>
   );
@@ -57,6 +57,9 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
 
     elevation: 5,
+  },
+  text: {
+    fontSize: 16,
   },
 });
 
