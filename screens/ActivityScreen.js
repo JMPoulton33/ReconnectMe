@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 
 const ActivityScreen = ({ items, addEventToDate }) => {
-  const weeklyEventGoal = 10;
+  const weeklyEventGoal = 4;
   const activityPercentage = calculateActivityPercentage(
     items,
     weeklyEventGoal,
@@ -22,7 +22,7 @@ const ActivityScreen = ({ items, addEventToDate }) => {
   const currentWeekEventCount = countEventsInWeek(items);
   return (
     <SafeAreaView style={styles.safeContainer}>
-      <View style={styles.container}>
+      <View style={[styles.container, styles.containerShadow]}>
         <Text style={styles.headingText}>My Activity</Text>
         <ProgressBarContainer percentageComplete={activityPercentage} />
         <ActivityBreakdown
@@ -42,10 +42,24 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   container: {
+    backgroundColor: 'white',
     justifyContent: 'flex-start',
     alignItems: 'center',
     marginVertical: 20,
     marginHorizontal: 10,
+  },
+  containerShadow: {
+    borderRadius: 5,
+    padding: 15,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.36,
+    shadowRadius: 6.68,
+
+    elevation: 11,
   },
   headingText: {
     fontWeight: 'bold',

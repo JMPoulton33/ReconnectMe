@@ -11,7 +11,6 @@ const HomeCalendar = ({
   toggleIsRequest,
 }) => {
   const renderItem = (item) => {
-    console.log(item);
     return (
       <EventItem
         eventTitle={item.name}

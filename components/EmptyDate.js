@@ -27,7 +27,10 @@ const EmptyDate = ({ handleNavigation, addEventToDate }) => {
   };
 
   return (
-    <TouchableOpacity style={styles.emptyDate} onPress={handleEmptyDatePress}>
+    <TouchableOpacity
+      style={[styles.emptyDate, styles.itemShadow]}
+      onPress={handleEmptyDatePress}
+    >
       <View>
         <Text>This is empty date!</Text>
       </View>
@@ -38,13 +41,22 @@ const EmptyDate = ({ handleNavigation, addEventToDate }) => {
 const styles = StyleSheet.create({
   emptyDate: {
     backgroundColor: 'white',
-    borderColor: 'grey',
-    borderWidth: 2,
-    borderRadius: 5,
+    borderRadius: 2,
     padding: 10,
     marginRight: 10,
     marginTop: 17,
     minHeight: 57.5,
+  },
+  itemShadow: {
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
   },
 });
 

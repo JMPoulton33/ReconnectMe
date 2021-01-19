@@ -65,6 +65,7 @@ const EventItem = ({
       <TouchableOpacity
         style={[
           styles.item,
+          styles.itemShadow,
           eventIsRequest ? styles.itemTopCorners : styles.item,
         ]}
         onPress={handleEventPress}
@@ -106,14 +107,23 @@ const EventItem = ({
 
 const styles = StyleSheet.create({
   item: {
-    backgroundColor: '#97D8D8',
-    borderColor: 'black',
-    borderWidth: 2,
+    backgroundColor: '#C4E8E8',
     borderRadius: 5,
     padding: 10,
     marginRight: 10,
     marginTop: 17,
     minHeight: 57.5,
+  },
+  itemShadow: {
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.36,
+    shadowRadius: 6.68,
+
+    elevation: 11,
   },
   eventItemText: {
     color: 'black',

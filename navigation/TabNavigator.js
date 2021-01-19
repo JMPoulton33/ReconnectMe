@@ -16,7 +16,6 @@ const BottomTabNavigator = () => {
       const userId = '6001759c5dc184084a16b971';
       const response = await fetch(`http://localhost:3000/api/users/${userId}`);
       const user = await response.json();
-      console.log('items loaded');
       const userEvents = user.events;
       setItems(userEvents);
     } catch (err) {

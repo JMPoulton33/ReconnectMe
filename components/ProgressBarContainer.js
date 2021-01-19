@@ -18,7 +18,6 @@ const styles = StyleSheet.create({
     height: 50,
     width: 360,
     borderRadius: 30,
-    borderWidth: 3,
     borderColor: '#23395B',
     justifyContent: 'flex-start',
   },
