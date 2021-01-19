@@ -4,6 +4,8 @@ import {
   MainStackNavigator,
   ActivityScreenStackNavigator,
 } from './StackNavigator';
+import { MaterialIcons } from '@expo/vector-icons';
+import { Text } from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
@@ -242,7 +244,32 @@ const BottomTabNavigator = () => {
   }, [renderCount]);
 
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+
+          if (route.name === 'Home') {
+            iconName = 'today';
+          } else if (route.name === 'Activity') {
+            iconName = 'add-chart';
+          } else if (route.name === 'Settings') {
+            iconName = 'settings-applications';
+          }
+
+          // You can return any component that you like here!
+          return <MaterialIcons name={iconName} size={size} color={color} />;
+        },
+      })}
+      tabBarOptions={{
+        showLabel: true,
+        activeTintColor: 'tomato',
+        inactiveTintColor: 'gray',
+        labelStyle: {
+          fontSize: 15,
+        },
+      }}
+    >
       <Tab.Screen name="Home">
         {(props) => (
           <MainStackNavigator
@@ -261,6 +288,9 @@ const BottomTabNavigator = () => {
             {...props}
           />
         )}
+      </Tab.Screen>
+      <Tab.Screen name="Settings">
+        {() => <Text>Settings Go Here</Text>}
       </Tab.Screen>
     </Tab.Navigator>
   );
