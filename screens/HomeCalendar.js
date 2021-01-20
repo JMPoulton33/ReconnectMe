@@ -72,7 +72,7 @@ const HomeCalendar = ({
           // textDayHeaderFontWeight: '300',
           // textDayFontSize: 16,
           // textMonthFontSize: 16,
-          textDayHeaderFontSize: 0,
+          // textDayHeaderFontSize: 0,
         }}
       />
     </SafeAreaView>
