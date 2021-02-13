@@ -5,6 +5,7 @@ When building ReconnectMe my aim was to prevent social isolation in older adults
 I wanted this app to bridge the gap between the generations by allowing friends and family to request visits and organise social events from their smartphone, while providing a simple, intuitive, easy-to-use platform for more elderly users. 
 
 ### What?
+![3 Screenshots highlighting the key functions of ReconnectMe](https://github.com/JMPoulton33/ReconnectMe/blob/main/assets/ReconnectMe%20github%20white.png "3 Main Functions")
 #### In keeping with the goal of simplicity, ReconnectMe has three main functions:
 * Displaying a simple calendar showing the user's upcoming events.
 * Creating events involving friends and family to give the decision making power back to the user.
